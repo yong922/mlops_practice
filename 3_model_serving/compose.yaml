@@ -1,0 +1,14 @@
+services:
+  api-with-model:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-with-model
+    ports:
+      - 8000:8000
+    healthcheck:
+      test: ["executable", "arg"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
