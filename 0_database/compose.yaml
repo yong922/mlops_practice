@@ -5,11 +5,11 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_DB=mydatabase
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=pgdatabase
     healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-U", "myuser", "-d", "mydatabase"]
+      test: ["CMD", "pg_isready", "-q", "-U", "myuser", "-d", "pgdatabase"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -23,6 +23,8 @@ services:
       postgres-server:
         condition: service_healthy
     command: ["postgres-server"]
+    volumes:
+      - ./data:/user/app/data
 
 networks:
   default:
