@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get install -y postgresql-client && \
     rm -rf /var/lib/apt/list/*
 
-WORKDIR /user/spp
+WORKDIR /user/app
 
 RUN pip install -U pip &&\
     pip install scikit-learn pandas psycopg2-binary

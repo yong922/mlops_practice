@@ -1,0 +1,42 @@
+services:
+  api-with-model:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-with-model
+    ports:
+      - 8000:8000
+    healthcheck:
+      test:
+        - CMD
+        - curl -X POST http://localhost:8000/predict
+        - -H
+        - "Content-Type: application/json"
+        - -d
+        - |
+            {
+              "id": "TRAIN_96293",
+              "timestamp": "2024-11-25 00:00:00",
+              "대출금액": 8640000,
+              "대출기간": "36 months",
+              "근로기간": "10+ years",
+              "주택소유상태": "RENT",
+              "연간소득": 50400000,
+              "부채_대비_소득_비율": 11.8,
+              "총계좌수": 14,
+              "대출목적": "신용카드",
+              "최근_2년간_연체_횟수": 0,
+              "총상환원금": 596148,
+              "총상환이자": 274956.0,
+              "총연체금액": 0.0,
+              "연체계좌수": 0.0,
+              "대출등급": "C"
+            }
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  default:
+    name: mlops-network
+    external: true
