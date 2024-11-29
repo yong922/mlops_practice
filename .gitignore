@@ -2,3 +2,5 @@
 /other
 /requiremets.txt
 /1_model/data.csv
+/3_model_serving/sk_model
+/3_model_serving/__pycache__
